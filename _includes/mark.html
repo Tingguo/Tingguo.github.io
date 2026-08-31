@@ -1,0 +1,21 @@
+{%- comment -%}
+三个分类的图标，同一套 24 网格、1.4 线宽，保持视觉一致。
+用法：{% include mark.html name="trades" %}
+{%- endcomment -%}
+{%- if include.name == "trades" -%}
+<svg class="card-mark" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+  <path d="M5 2.8v4.2M5 17v4.2"/><rect x="2.7" y="7" width="4.6" height="10"/>
+  <path d="M12 2v5M12 15.2v6.8"/><rect x="9.7" y="7" width="4.6" height="8.2"/>
+  <path d="M19 4.6v3.4M19 16.2v3.2"/><rect x="16.7" y="8" width="4.6" height="8.2"/>
+</svg>
+{%- elsif include.name == "books" -%}
+<svg class="card-mark" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M12 6.4C10.3 5 8.1 4.4 3.8 4.6v12.9c4.3-.2 6.5.4 8.2 1.8 1.7-1.4 3.9-2 8.2-1.8V4.6c-4.3-.2-6.5.4-8.2 1.8z"/>
+  <path d="M12 6.4v12.9"/>
+</svg>
+{%- elsif include.name == "videos" -%}
+<svg class="card-mark" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="2.6" y="4.6" width="18.8" height="14.8" rx="1.2"/>
+  <path d="M10.2 9.1l4.9 2.9-4.9 2.9z"/>
+</svg>
+{%- endif -%}

@@ -1,3 +1,29 @@
-theme: jekyll-theme-minimal
 title: nalanwutuo
-description: Trading notes and market updates
+tagline: 交易学习笔记
+description: 记录个人交易学习的过程——交易复盘、读书笔记与视频笔记。
+lang: zh-CN
+timezone: Australia/Sydney
+
+permalink: /note/:title/
+
+# 三个分类的唯一数据源：导航、首页卡片、分类页都从这里读
+categories_meta:
+  - key: trades
+    name: 个人交易记录
+    url: /trades/
+    blurb: 每一笔真实交易的入场理由、离场结果，以及事后复盘。
+  - key: books
+    name: 读书笔记
+    url: /books/
+    blurb: 读过的交易与投资书籍，摘录加上自己的理解。
+  - key: videos
+    name: 视频笔记
+    url: /videos/
+    blurb: 课程、访谈与讲座的要点整理。
+
+defaults:
+  - scope: { path: "", type: "posts" }
+    values: { layout: post }
+
+exclude: [README.md]
+since: 2026.08

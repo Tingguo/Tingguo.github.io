@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{%- assign n = site.posts | where: "cat", page.cat | size -%}
+<div class="wrap page">
+  <div class="ledger">
+    <div class="ledger-meta">{{ n }} 条</div>
+    <div class="ledger-body">
+      <h1 class="page-title">{{ page.title }}</h1>
+      <p class="page-blurb">{{ page.description }}</p>
+      {% include entries.html category=page.cat %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{%- comment -%}
+条目列表。传 category 只列该分类；不传则列全部。
+用法：{% include entries.html category="trades" limit=5 %}
+{%- endcomment -%}
+{%- if include.category -%}
+  {%- assign items = site.posts | where: "cat", include.category -%}
+{%- else -%}
+  {%- assign items = site.posts -%}
+{%- endif -%}
+{%- if include.limit -%}{%- assign items = items | slice: 0, include.limit -%}{%- endif -%}
+
+{%- if items.size > 0 -%}
+<ul class="entries">
+  {%- for p in items %}
+  <li class="entry">
+    <a class="entry-link" href="{{ p.url | relative_url }}">
+      <span class="entry-no">
+        No.{{ p.no | default: forloop.index | prepend: '00' | slice: -3, 3 }}<br>
+        {{ p.date | date: "%Y.%m.%d" }}
+      </span>
+      <span class="entry-main">
+        <span class="entry-title">{{ p.title }}</span>
+        {%- if p.summary %}
+        <span class="entry-sum">{{ p.summary }}</span>
+        {%- endif %}
+        <span class="entry-tag">
+          {%- for c in site.categories_meta -%}
+            {%- if c.key == p.cat %}{{ c.name }}{% endif -%}
+          {%- endfor -%}
+          {%- if p.pl %} · <span class="entry-pl {% if p.pl contains '-' %}is-down{% else %}is-up{% endif %}">{{ p.pl }}</span>{% endif -%}
+        </span>
+      </span>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>
+{%- else -%}
+<p class="empty">还没有记录。在 <code>_posts/</code> 里新建一篇就会出现在这里。</p>
+{%- endif -%}

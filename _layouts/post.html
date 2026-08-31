@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<div class="wrap page">
+  <article class="ledger">
+
+    <div class="ledger-meta">
+      No.{{ page.no | prepend: '00' | slice: -3, 3 }}<br>
+      {{ page.date | date: "%Y.%m.%d" }}<br>
+      {%- for c in site.categories_meta -%}
+        {%- if c.key == page.cat %}<a href="{{ c.url | relative_url }}">{{ c.name }}</a>{% endif -%}
+      {%- endfor %}
+    </div>
+
+    <div class="ledger-body">
+      <h1 class="page-title">{{ page.title }}</h1>
+      {%- if page.summary %}
+      <p class="page-blurb">{{ page.summary }}</p>
+      {%- endif %}
+
+      {%- if page.slip %}
+      <div class="slip">
+        {%- for row in page.slip %}
+        <div class="slip-cell">
+          <span class="slip-k">{{ row.k }}</span>
+          <span class="slip-v{% if row.k == '盈亏' %}{% if row.v contains '-' %} is-down{% else %} is-up{% endif %}{% endif %}">{{ row.v }}</span>
+        </div>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+
+      <div class="prose">
+        {{ content }}
+      </div>
+    </div>
+
+  </article>
+</div>

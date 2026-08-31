@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<div class="wrap">
+
+  <section class="opening ledger">
+    <div class="ledger-meta">
+      <span class="opening-no">第 001 册</span>
+      {{ site.since }} 起<br>
+      {{ site.posts.size }} 条记录
+    </div>
+    <div class="ledger-body">
+      <h1 class="opening-title">记录我学习<br>交易的全过程</h1>
+      <p class="opening-lede">这是我的个人交易学习笔记。每一笔真实交易的入场理由与复盘、读过的书、看过的视频，都按时间顺序记在这里。</p>
+      <p class="opening-lede">不荐股，不预测行情。只记录我做过什么、错在哪里、下次改什么。</p>
+      <p class="opening-note">写给几年后的自己。</p>
+      <div class="tape">{% include tape.svg %}</div>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <h2 class="shelf-head">分类</h2>
+    <div class="cards">
+      {%- for c in site.categories_meta %}
+      {%- assign n = site.posts | where: "cat", c.key | size %}
+      <a class="card" href="{{ c.url | relative_url }}">
+        {% include mark.html name=c.key %}
+        <h3 class="card-name">{{ c.name }}</h3>
+        <p class="card-blurb">{{ c.blurb }}</p>
+        <span class="card-count">{{ n }} 条</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="shelf">
+    <h2 class="shelf-head">最近记录</h2>
+    {% include entries.html limit=8 %}
+  </section>
+
+</div>
