@@ -1,0 +1,41 @@
+name: 写一篇笔记
+description: 填完提交，站点会自动更新。正文里可以直接粘贴截图。
+title: "在这里写标题"
+labels: ["publish"]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: 分类
+      options:
+        - 个人交易记录
+        - 读书笔记
+        - 视频笔记
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: 摘要
+      description: 一句话，显示在列表里。留空也可以。
+      placeholder: 例：入场前写好了止损位，并且真的执行了。
+
+  - type: input
+    id: pl
+    attributes:
+      label: 盈亏
+      description: 只有交易记录需要填。带正号显示红色，带负号显示绿色。留空则不显示。
+      placeholder: 例：+4.2% 或 -1.8%
+
+  - type: textarea
+    id: content
+    attributes:
+      label: 正文
+      description: 支持 Markdown。截图可以直接 Ctrl+V 粘贴，会自动上传。
+      placeholder: |
+        ## 进场理由
+
+        ## 复盘
+    validations:
+      required: true

@@ -2,7 +2,20 @@
 
 <https://tingguo.github.io> 的源码 — 个人交易学习笔记，Jekyll + GitHub Pages。
 
-## 怎么加一篇新笔记
+## 怎么加一篇新笔记（推荐：在网页上写，不碰代码）
+
+打开仓库的 **Issues → New issue → 「写一篇笔记」**，填表单提交即可。一两分钟后站点自动更新。
+
+- **正文里截图直接 Ctrl+V 粘贴**，图片会自动上传
+- 想改文章：回去**编辑那个 Issue**，站点跟着更新，编号不会变
+- 想下架文章：**去掉 Issue 上的 `publish` 标签**
+- 分类用表单里的下拉框选，不用记任何格式
+
+背后是 [`.github/workflows/publish-note.yml`](.github/workflows/publish-note.yml) 调用
+[`scripts/issue_to_post.py`](scripts/issue_to_post.py)，把 Issue 转成 `_posts/` 下的
+Markdown 再提交。只有仓库所有者开的 Issue 会被发布。
+
+### 或者，直接写文件
 
 在 `_posts/` 下新建 `年-月-日-英文短名.md`，开头写好 front matter：
 

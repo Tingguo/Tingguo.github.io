@@ -1,0 +1,42 @@
+name: 发布笔记
+
+on:
+  issues:
+    types: [opened, edited, labeled, unlabeled, deleted]
+
+permissions:
+  contents: write
+
+# 连续编辑时按顺序跑，避免两个任务同时提交打架
+concurrency:
+  group: publish-note
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # 只有仓库所有者开的 Issue 才会被发布
+    if: github.event.issue.author_association == 'OWNER'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 把 Issue 转成文章
+        run: python scripts/issue_to_post.py
+
+      - name: 提交
+        run: |
+          if [ -z "$(git status --porcelain _posts)" ]; then
+            echo "没有变化，跳过提交"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts
+          git commit -m "笔记：${{ github.event.issue.title }} (#${{ github.event.issue.number }})"
+          # 并发编辑时远端可能已经前进，重试一次
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main

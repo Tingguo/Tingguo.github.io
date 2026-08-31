@@ -120,6 +120,9 @@ a{color:inherit}
 .prose td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
 .prose a{color:var(--ink);text-decoration-color:var(--brass);text-underline-offset:3px}
 .prose hr{border:0;border-top:1px solid var(--rule);margin:2.4rem 0}
+/* 从 Issue 粘贴进来的截图 */
+.prose img{display:block;margin:1.7rem 0;border:1px solid var(--rule);background:var(--paper-raised)}
+.prose img + em{display:block;margin:-1.1rem 0 1.7rem;font-family:var(--mono);font-size:.72rem;font-style:normal;color:var(--ink-soft)}
 
 /* 交易摘要小票 */
 .slip{border:1px solid var(--rule);background:var(--paper-raised);padding:1rem 1.2rem;margin:0 0 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));gap:.9rem 1.4rem}
