@@ -5,7 +5,7 @@ layout: default
   <article class="ledger">
 
     <div class="ledger-meta">
-      No.{{ page.no | prepend: '00' | slice: -3, 3 }}<br>
+      No.{{ page.seq | default: 0 | prepend: '00' | slice: -3, 3 }}<br>
       {{ page.date | date: "%Y.%m.%d" }}<br>
       {%- for c in site.categories_meta -%}
         {%- if c.key == page.cat %}<a href="{{ c.url | relative_url }}">{{ c.name }}</a>{% endif -%}

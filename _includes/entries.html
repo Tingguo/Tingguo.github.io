@@ -15,7 +15,7 @@
   <li class="entry">
     <a class="entry-link" href="{{ p.url | relative_url }}">
       <span class="entry-no">
-        No.{{ p.no | default: forloop.index | prepend: '00' | slice: -3, 3 }}<br>
+        No.{{ p.seq | default: forloop.index | prepend: '00' | slice: -3, 3 }}<br>
         {{ p.date | date: "%Y.%m.%d" }}
       </span>
       <span class="entry-main">
