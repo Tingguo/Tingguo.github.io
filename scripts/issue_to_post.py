@@ -81,7 +81,15 @@ def main():
             os.remove(current)
             print(f"下架：{current}")
             return 0
-        print("没有 publish 标签，跳过")
+        # 明明是用笔记表单填的，却没带上标签：多半是仓库里还没建 publish 标签
+        if "### 分类" in (issue.get("body") or ""):
+            print(
+                f"::warning::这条 Issue 看起来是用笔记表单填的，但没有 {PUBLISH_LABEL} 标签，"
+                f"所以没有发布。请在仓库 Issues → Labels 里新建一个名为 {PUBLISH_LABEL} 的标签，"
+                f"然后给这条 Issue 打上它。"
+            )
+        else:
+            print(f"没有 {PUBLISH_LABEL} 标签，跳过")
         return 0
 
     sec = parse_sections(issue.get("body", ""))
